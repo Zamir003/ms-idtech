@@ -1,0 +1,42 @@
+server:
+  port: 8050
+
+spring:
+  application:
+    name: ms-idtech
+  datasource:
+    url: jdbc:postgresql://localhost:5442/postgres
+    username: postgres
+    password: "1"
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    properties:
+      hibernate:
+        default_schema: idtech
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+springdoc:
+  swagger-ui:
+    path: /swagger
+
+clients:
+  payment:
+    base-url: http://localhost:8051
+
+app:
+  rabbit:
+    exchanges:
+      notifications: notifications.events.x
+    routing-keys:
+      birthday-teacher: birthday.teacher
+      birthday-student: birthday.student
